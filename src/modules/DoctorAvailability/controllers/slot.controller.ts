@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 
 import SlotRepo from '../repositories/slot.repository';
 import SlotService from '../services/slot.service';
+import CreateSlotDTO from './dtos/createSlot.dto';
 
 const slotRepo = new SlotRepo();
 const slotService = new SlotService(slotRepo);
@@ -17,10 +18,12 @@ slotRouter.get('/slots', (req: Request, res: Response) => {
   }
 });
 
+
 slotRouter.post('/slots', (req: Request, res: Response) => {
   try {
     const { time, cost } = req.body;
-    slotService.addSlot(time, cost);
+    const createSlotDTO = new CreateSlotDTO(time, cost)
+    slotService.addSlot(createSlotDTO.time, createSlotDTO.cost);
     res.status(201).json({ message: 'Slot created successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Error creating slot', error });
