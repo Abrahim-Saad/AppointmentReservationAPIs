@@ -15,4 +15,8 @@ export default class SlotService {
   public addSlot(time: string, cost: number): void {
     this.slotRepo.create({ slotTime: time, slotCost: cost });
   }
+
+  public listDoctorAvailableSlots(): Slot[] {
+    return this.slotRepo.findAvailableSlots();
+  }
 }

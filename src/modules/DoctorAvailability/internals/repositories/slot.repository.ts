@@ -9,7 +9,7 @@ export default class SlotRepo implements ISlotRepo {
   }
 
   public findAvailableSlots(): Slot[] {
-    return this.slots.filter((slot) => slot.reserved);
+    return this.slots.filter((slot) => !slot.reserved);
   }
 
   public create({ slotTime, slotCost }: Partial<Slot>): void {
