@@ -1,28 +1,22 @@
-import ISlotFacade from "./ISlot.facade";
-import SlotService from "../internals/services/slot.service";
-import SlotRepo from "../internals/repositories/slot.repository";
-import SlotDto from "../../../shared/dto/slot.dto";
-import Slot from "../internals/models/slot.model";
-
-
+import SlotDto from '../../../shared/dto/slot.dto';
+import Slot from '../internals/models/slot.model';
+import SlotService from '../internals/services/slot.service';
+import { container } from '../internals/shared/container';
+import ISlotFacade from './ISlot.facade';
 
 export default class SlotFacade implements ISlotFacade {
-    private slotService: SlotService;
+  private slotService: SlotService = container.resolve<SlotService>('slotService');
 
-    constructor() {
-        this.slotService = new SlotService(new SlotRepo());
-    }
-
-     listDoctorAvailableSlots(): SlotDto[] {
-        const slots : Slot[] = this.slotService.listDoctorAvailableSlots();
-        const slotDtos: SlotDto[] = slots.map(slot => ({
-            ID: slot.id,
-            time: slot.slotTime,
-            isReserved: slot.reserved,
-            cost: slot.slotCost
-        }));
-        return slotDtos;
-    }
-
-    
+  listDoctorAvailableSlots(): SlotDto[] {
+    const slots: Slot[] = this.slotService.listDoctorAvailableSlots();
+    const slotDtos: SlotDto[] = slots.map((slot: Slot) => {
+      return {
+        ID: slot.getID(),
+        time: slot.getSlotTime(),
+        isReserved: slot.getIsReserved(),
+        cost: slot.getSlotCost(),
+      };
+    });
+    return slotDtos;
+  }
 }

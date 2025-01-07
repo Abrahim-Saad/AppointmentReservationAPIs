@@ -6,38 +6,38 @@ export default class Slot {
   private isReserved: boolean;
   private cost: number;
 
-  constructor(time: string, cost: number) {
+  constructor(time: string, cost: number, isReserved: boolean = false) {
     this.ID = randomUUID();
     this.time = time.toLocaleString();
-    this.isReserved = false;
+    this.isReserved = isReserved;
     this.cost = cost;
   }
 
-  public get id(): string {
+  public getID(): string {
     return this.ID;
   }
 
-  public get slotTime(): string {
+  public getSlotTime(): string {
     return this.time;
   }
 
-  public set slotTime(newTime: string) {
+  public setSlotTime(newTime: string) {
     this.time = newTime.toLocaleString();
   }
 
-  public get reserved(): boolean {
+  public getIsReserved(): boolean {
     return this.isReserved;
   }
 
-  public set reserved(status: boolean) {
+  public setIsReserved(status: boolean) {
     this.isReserved = status;
   }
 
-  public get slotCost(): number {
+  public getSlotCost(): number {
     return this.cost;
   }
 
-  public set slotCost(newCost: number) {
+  public setSlotCost(newCost: number) {
     if (newCost < 0) {
       throw new Error('Cost cannot be negative');
     }

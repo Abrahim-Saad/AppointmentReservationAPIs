@@ -1,33 +1,34 @@
-import express, { Request, Response } from 'express';
+import { Request, Response } from 'express';
 
-import SlotRepo from '../repositories/slot.repository';
 import SlotService from '../services/slot.service';
+import { container } from '../shared/container';
 import ICreateSlotDTO from './dtos/ICreateSlot.dto';
+import ISlotRepo from '../interfaces/slot.interface';
+import SlotRepo from '../repositories/slot.repository';
 
-const slotRepo = new SlotRepo();
-const slotService = new SlotService(slotRepo);
+container.register<ISlotRepo>('slotRepo', new SlotRepo());
+container.register<SlotService>('slotService', new SlotService());
 
-const slotRouter = express.Router();
+const slotService: SlotService = container.resolve('slotService');
 
-slotRouter.get('/slots', (req: Request, res: Response) => {
-  try {
-    const slots = slotService.listSlots();
-    res.status(200).json(slots);
-  } catch (error) {
-    res.status(500).json({ message: 'Error listing slots', error });
+export default class SlotController {
+  public static addSlot(req: Request, res: Response) {
+    try {
+      const { time, cost } = req.body;
+      const createSlotDTO: ICreateSlotDTO = { time, cost };
+      slotService.addSlot(createSlotDTO);
+      res.status(201).json({ message: 'Slot created successfully' });
+    } catch (error) {
+      res.status(500).json({ message: 'Error creating slot', error });
+    }
   }
-});
 
-
-slotRouter.post('/slots', (req: Request, res: Response) => {
-  try {
-    const { time, cost } = req.body;
-    const createSlotDTO: ICreateSlotDTO = { time, cost };
-    slotService.addSlot(createSlotDTO.time, createSlotDTO.cost);
-    res.status(201).json({ message: 'Slot created successfully' });
-  } catch (error) {
-    res.status(500).json({ message: 'Error creating slot', error });
+  public static getSlots(req: Request, res: Response) {
+    try {
+      const slots = slotService.listSlots();
+      res.status(200).json(slots);
+    } catch (error) {
+      res.status(500).json({ message: 'Error listing slots', error });
+    }
   }
-});
-
-export default slotRouter;
+}

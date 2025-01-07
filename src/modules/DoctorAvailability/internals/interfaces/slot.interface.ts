@@ -1,7 +1,8 @@
+import ICreateSlotDTO from '../controllers/dtos/ICreateSlot.dto';
 import Slot from '../models/slot.model';
 
 export default interface ISlotRepo {
   findAll(): Slot[];
-  create(entity: Partial<Slot>): void;
+  create(createSlotDto: ICreateSlotDTO): void;
   findAvailableSlots(): Slot[];
 }
