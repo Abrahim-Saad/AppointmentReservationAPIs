@@ -4,7 +4,7 @@ import 'dotenv-flow/config';
 import express from 'express';
 import morgan from 'morgan';
 import slotRouter from './modules/DoctorAvailability/internals/controllers/routes/slot.routes';
-import appointmentBookingRouter from './modules/AppointmentBooking/internals/presenetation/routes';
+import appointmentBookingRouter from './modules/AppointmentBooking/internals/presentation/routes';
 
 const app = express();
 const port = process.env.PORT;
