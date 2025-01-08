@@ -3,6 +3,10 @@ import cors from 'cors';
 import 'dotenv-flow/config';
 import express from 'express';
 import morgan from 'morgan';
+import { container } from './shared/container/container';
+import { InMemoryEventBus } from './shared/infrastructure/inMemoryEventBus';
+container.register<InMemoryEventBus>('InMemoryEventBus', new InMemoryEventBus());
+
 import slotRouter from './modules/DoctorAvailability/internals/controllers/routes/slot.routes';
 import appointmentBookingRouter from './modules/AppointmentBooking/internals/presentation/routes';
 

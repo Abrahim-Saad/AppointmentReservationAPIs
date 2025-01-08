@@ -1,4 +1,4 @@
-export default interface SlotDto {
+export default interface SlotDTO {
     ID: string;
     time: string;
     isReserved: boolean;
