@@ -5,4 +5,5 @@ export default interface ISlotRepo {
   findAll(): Slot[];
   create(createSlotDto: ICreateSlotDTO): void;
   findAvailableSlots(): Slot[];
+  updateSlotIsReservedStatus(slotId: string): void; 
 }

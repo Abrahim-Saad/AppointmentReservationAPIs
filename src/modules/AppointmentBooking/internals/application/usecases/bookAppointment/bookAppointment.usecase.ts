@@ -14,11 +14,8 @@ export default class BookAppointmentUseCase implements IBookAppointmentUseCase {
     private eventBus: InMemoryEventBus = EventBusContainer.resolve<InMemoryEventBus>('InMemoryEventBus')
 
     async execute(createAppointmentBookingDTO: ICreateAppointmentBookingDTO): Promise<void> {
-        console.log('BookAppointmentUseCase: execute', createAppointmentBookingDTO)
         const appointmentBooking: AppointmentBookingDTO = this.appointmentBookingRepo.createAppointmentBooking(createAppointmentBookingDTO)
         const appointmentBookedEvent: IEvent = new AppointmentBookedEvent(appointmentBooking);
-        console.log('BookAppointmentUseCase: execute: appointmentBookedEvent', appointmentBookedEvent)
         await this.eventBus.publish(appointmentBookedEvent);
-        console.log('BookAppointmentUseCase: execute: event published')
     }
 }

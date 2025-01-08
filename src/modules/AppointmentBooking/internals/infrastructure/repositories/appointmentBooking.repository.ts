@@ -2,13 +2,15 @@
 import AppointmentBookingDTO from "../../../../../shared/dto/appointmentBooking.dto";
 import AppointmentBooking from "../../domain/entities/appointmentBooking.entity";
 import IAppointmentBookingRepository from "../../domain/interfaces/IAppointmentBooking.repository";
+import ICreateAppointmentBookingDTO from "../../presentation/dtos/ICreateAppointmentBooking.dto";
 import IUpdateAppointmentBookingStatusDTO from "../../presentation/dtos/IUpdateAppointmentBookingStatus.dto";
 
 export default class AppointmentBookingRepository implements IAppointmentBookingRepository {
 
     private appointmentBookings: AppointmentBooking[] = [];
 
-    createAppointmentBooking(appointment: AppointmentBookingDTO): AppointmentBookingDTO {
+    createAppointmentBooking(appointment: ICreateAppointmentBookingDTO): AppointmentBookingDTO {
+        
         const newAppointment = new AppointmentBooking(
             appointment.slotID,
             appointment.patientId,
@@ -16,7 +18,7 @@ export default class AppointmentBookingRepository implements IAppointmentBooking
         );
         this.appointmentBookings.push(newAppointment);
         return {
-            slotID: newAppointment.getID(),
+            slotID: newAppointment.getSlotID(),
             patientId: newAppointment.getPatientId(),
             patientName: newAppointment.getPatientName()
         } as AppointmentBookingDTO;

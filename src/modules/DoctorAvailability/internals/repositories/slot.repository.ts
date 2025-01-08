@@ -23,4 +23,14 @@ export default class SlotRepo implements ISlotRepo {
     const slotBody = new Slot(time, cost);
     this.slots.push(slotBody);
   }
+
+  public updateSlotIsReservedStatus(slotId: string): void {
+    this.slots = this.slots.map((slot) => {
+      if (slot.getID() == slotId) {
+        slot.setIsReserved(true);
+      }
+      return slot;
+    });
+    
+  }
 }
