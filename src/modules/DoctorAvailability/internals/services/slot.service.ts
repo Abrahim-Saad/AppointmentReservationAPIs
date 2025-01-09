@@ -11,8 +11,8 @@ export default class SlotService {
   private eventBus: InMemoryEventBus = EventBusContainer.resolve<InMemoryEventBus>('InMemoryEventBus');
   
   constructor () {
+    // TODO: create an enum for the events
     this.eventBus.subscribe('AppointmentBooked', this.updateSlotIsReservedStatus.bind(this));
-    
   }
 
   public listSlots(): Slot[] {

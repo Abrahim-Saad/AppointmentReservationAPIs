@@ -3,9 +3,14 @@ import cors from 'cors';
 import 'dotenv-flow/config';
 import express from 'express';
 import morgan from 'morgan';
-import { container } from './shared/container/container';
+import { container as EventBusContainer } from './shared/container/container';
+import { container as AppointmentConfirmationContainer } from './modules/AppointmentConfirmation/container';
 import { InMemoryEventBus } from './shared/infrastructure/inMemoryEventBus';
-container.register<InMemoryEventBus>('InMemoryEventBus', new InMemoryEventBus());
+import INotificationService from './modules/AppointmentConfirmation/INotification.service';
+import NotificationService from './modules/AppointmentConfirmation/notification.service';
+
+EventBusContainer.register<InMemoryEventBus>('InMemoryEventBus', new InMemoryEventBus());
+AppointmentConfirmationContainer.register<INotificationService>('NotificationService', new NotificationService());
 
 import slotRouter from './modules/DoctorAvailability/internals/controllers/routes/slot.routes';
 import appointmentBookingRouter from './modules/AppointmentBooking/internals/presentation/routes';

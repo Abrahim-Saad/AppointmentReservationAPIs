@@ -12,7 +12,7 @@ export default class AppointmentBookedEvent implements IEvent {
         this.eventId = randomUUID();
         this.occurredOn = new Date(Date.now());
         this.eventData = eventData;
-        this.eventName = 'AppointmentBooked';
+        this.eventName = 'AppointmentBooked'; // TODO: create an enum for the events
     }
     public getEventId(): string {
         return this.eventId;
