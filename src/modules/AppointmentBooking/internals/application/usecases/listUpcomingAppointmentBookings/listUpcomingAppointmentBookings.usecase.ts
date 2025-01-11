@@ -5,12 +5,11 @@ import IListUpcomingAppointmentBookingsUseCase from './IListUpcomingAppointmentB
 
 
 export default class ListUpcomingAppointmentBookingsUseCase implements IListUpcomingAppointmentBookingsUseCase {
-  private appointmentBookingRepo: IAppointmentBookingRepository =
-    container.resolve<IAppointmentBookingRepository>(
-      'appointmentBookingRepository',
-    );
+  private appointmentBookingRepo: IAppointmentBookingRepository = container.resolve<IAppointmentBookingRepository>('appointmentBookingRepository',);
 
-    execute(): AppointmentBookingDTO[] {
-        return this.appointmentBookingRepo.listUpcomingAppointmentBookings();
-    };
+  execute(): AppointmentBookingDTO[] {
+    console.log('ListUpcomingAppointmentBookingsUseCase: execute');
+
+    return this.appointmentBookingRepo.listUpcomingAppointmentBookings();
+  };
 };

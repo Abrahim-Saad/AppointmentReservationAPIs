@@ -14,6 +14,7 @@ AppointmentConfirmationContainer.register<INotificationService>('notificationSer
 
 import slotRouter from './modules/DoctorAvailability/internals/controllers/routes/slot.routes';
 import appointmentBookingRouter from './modules/AppointmentBooking/internals/presentation/routes';
+import AppointmentManagmentRouter from './modules/DoctorAppointmentManagement/internals/shell/controllers/routes/appointmentManagment.route';
 
 const app = express();
 const port = process.env.PORT;
@@ -24,7 +25,7 @@ app.use(cors());
 
 app.use('/api/v1/', appointmentBookingRouter);
 app.use('/api/v1/', slotRouter);
-
+app.use('/api/v1/', AppointmentManagmentRouter);
 app.listen(port, () => {
   console.log(
     `Running in [${process.env.NODE_ENV} environment] at port: [${port}]`,
