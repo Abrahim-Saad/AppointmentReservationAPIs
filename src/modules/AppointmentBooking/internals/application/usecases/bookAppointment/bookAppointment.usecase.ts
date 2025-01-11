@@ -20,7 +20,7 @@ export default class BookAppointmentUseCase implements IBookAppointmentUseCase {
       'appointmentBookingGateway',
     );
   private eventBus: InMemoryEventBus =
-    EventBusContainer.resolve<InMemoryEventBus>('InMemoryEventBus');
+    EventBusContainer.resolve<InMemoryEventBus>('inMemoryEventBus');
 
   private validateSlot(slot: SlotDTO | null) {
     if (!slot?.time) {

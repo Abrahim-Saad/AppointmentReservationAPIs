@@ -8,7 +8,7 @@ import IEvent from '../../../../shared/domain/interfaces/IEvent.interface';
 
 export default class SlotService {
   private slotRepo: ISlotRepo = DoctorAvailabilityContainer.resolve<ISlotRepo>('slotRepo');
-  private eventBus: InMemoryEventBus = EventBusContainer.resolve<InMemoryEventBus>('InMemoryEventBus');
+  private eventBus: InMemoryEventBus = EventBusContainer.resolve<InMemoryEventBus>('inMemoryEventBus');
   
   constructor () {
     // TODO: create an enum for the events

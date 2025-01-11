@@ -4,7 +4,7 @@ import { InMemoryEventBus } from '../../shared/infrastructure/inMemoryEventBus';
 import INotificationService from './INotification.service';
 
 export default class NotificationService implements INotificationService {
-  private eventBus: InMemoryEventBus = EventBusContainer.resolve<InMemoryEventBus>('InMemoryEventBus');
+  private eventBus: InMemoryEventBus = EventBusContainer.resolve<InMemoryEventBus>('inMemoryEventBus');
 
   constructor() {
     // TODO: create an enum for the events
