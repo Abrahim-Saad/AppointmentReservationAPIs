@@ -1,47 +1,46 @@
 
 import AppointmentBookingDTO from "../../../../../shared/dto/appointmentBooking.dto";
 import AppointmentBooking from "../../domain/entities/appointmentBooking.entity";
+import { AppointmentStatus } from "../../domain/enums/appointmentStatus.enum";
 import IAppointmentBookingRepository from "../../domain/interfaces/IAppointmentBooking.repository";
 import ICreateAppointmentBookingDTO from "../../presentation/dtos/ICreateAppointmentBooking.dto";
 import IUpdateAppointmentBookingStatusDTO from "../../presentation/dtos/IUpdateAppointmentBookingStatus.dto";
 
 export default class AppointmentBookingRepository implements IAppointmentBookingRepository {
-
     private appointmentBookings: AppointmentBooking[] = [];
 
     createAppointmentBooking(appointment: ICreateAppointmentBookingDTO): AppointmentBookingDTO {
-        
         const newAppointment = new AppointmentBooking(
             appointment.slotID,
-            appointment.patientId,
+            appointment.slotTime,
+            appointment.patientID,
             appointment.patientName
         );
         this.appointmentBookings.push(newAppointment);
         return {
             slotID: newAppointment.getSlotID(),
-            patientId: newAppointment.getPatientId(),
-            patientName: newAppointment.getPatientName()
+            slotTime: newAppointment.getSlotTime(),
+            patientID: newAppointment.getPatientID(),
+            patientName: newAppointment.getPatientName(),
         } as AppointmentBookingDTO;
     }
 
-
-    getAppointmentBookingById(id: string): AppointmentBookingDTO {
-        const appointment = this.appointmentBookings.find(appointment => appointment.getID() === id);
+    getAppointmentBookingByID(ID: string): AppointmentBookingDTO {
+        const appointment = this.appointmentBookings.find(appointment => appointment.getID() === ID);
         if (appointment) {
             return {
                 slotID: appointment.getID(),
-                patientId: appointment.getPatientId(),
+                patientID: appointment.getPatientID(),
                 patientName: appointment.getPatientName()
             } as AppointmentBookingDTO;
         }
-        throw new Error(`AppointmentBooking with ID ${id} not found`);
+        throw new Error(`AppointmentBooking with ID ${ID} not found`);
     }
-
 
     listAppointmentBookings(): AppointmentBookingDTO[] {
         return this.appointmentBookings.map(appointment => ({
             slotID: appointment.getID(),
-            patientId: appointment.getPatientId(),
+            patientID: appointment.getPatientID(),
             patientName: appointment.getPatientName()
         } as AppointmentBookingDTO));
     }
@@ -53,4 +52,21 @@ export default class AppointmentBookingRepository implements IAppointmentBooking
         }
     }
 
+    listUpcomingAppointmentBookings(): AppointmentBookingDTO[] {
+        return this.appointmentBookings
+            .filter(appointment => {
+                const appointmentDate = new Date(appointment.getSlotTime()).toLocaleString();
+                const now = new Date().toLocaleString();
+                if (appointmentDate > now && appointment.getAppointmentStatus() !== AppointmentStatus.CANCELLED) {
+                    return appointment
+                }
+            })
+            .map(appointment => ({
+                slotID: appointment.getID(),
+                slotTime: appointment.getSlotTime(),
+                patientID: appointment.getPatientID(),
+                patientName: appointment.getPatientName(),
+                appointmentStatus: appointment.getAppointmentStatus()
+            } as AppointmentBookingDTO));
+    }
 }

@@ -1,5 +1,5 @@
 export default interface IEvent {
-    eventId: string;
+    eventID: string;
     eventName: string;
     eventData: any;
     occurredOn: Date;

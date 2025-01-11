@@ -1,5 +1,5 @@
 import Slot from '../models/slot.model';
-import ISlotRepo from '../interfaces/slot.interface';
+import ISlotRepo from '../repositories/ISlot.repository';
 import ICreateSlotDTO from '../controllers/dtos/ICreateSlot.dto';
 import { container as DoctorAvailabilityContainer } from '../shared/container';
 import { container as EventBusContainer } from '../../../../shared/container/container'
@@ -18,7 +18,11 @@ export default class SlotService {
   public listSlots(): Slot[] {
     return this.slotRepo.findAll();
   }
-  
+
+  public getSlotByID(slotID: string): Slot | null {
+    return this.slotRepo.getSlotByID(slotID);
+  }
+
   public addSlot(createSlotDto: ICreateSlotDTO): void {
     this.slotRepo.create(createSlotDto);
   }

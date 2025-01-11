@@ -3,19 +3,19 @@ import IEvent from '../interfaces/IEvent.interface';
 import { randomUUID } from 'crypto';
 
 export default class AppointmentBookedEvent implements IEvent {
-    eventId: string;
+    eventID: string;
     eventName: string;
     occurredOn: Date;
     eventData: AppointmentBookingDTO;
 
     constructor(eventData: AppointmentBookingDTO) {
-        this.eventId = randomUUID();
+        this.eventID = randomUUID();
         this.occurredOn = new Date(Date.now());
         this.eventData = eventData;
         this.eventName = 'AppointmentBooked'; // TODO: create an enum for the events
     }
-    public getEventId(): string {
-        return this.eventId;
+    public getEventID(): string {
+        return this.eventID;
     }
 
     public getEventName(): string {

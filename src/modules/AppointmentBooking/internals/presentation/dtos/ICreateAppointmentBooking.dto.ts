@@ -1,6 +1,7 @@
 
 export default interface ICreateAppointmentBookingDTO {
     slotID: string;
-    patientId: string;
+    slotTime: string;
+    patientID: string;
     patientName: string;
 }

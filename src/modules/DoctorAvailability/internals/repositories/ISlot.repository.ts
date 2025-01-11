@@ -3,7 +3,8 @@ import Slot from '../models/slot.model';
 
 export default interface ISlotRepo {
   findAll(): Slot[];
+  getSlotByID(slotID: string): Slot | null;
   create(createSlotDto: ICreateSlotDTO): void;
   findAvailableSlots(): Slot[];
-  updateSlotIsReservedStatus(slotId: string): void; 
+  updateSlotIsReservedStatus(slotID: string): void; 
 }

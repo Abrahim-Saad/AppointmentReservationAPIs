@@ -4,21 +4,21 @@ import { AppointmentStatus } from '../enums/appointmentStatus.enum';
 export default class AppointmentBooking {
     private ID: string;
     private slotID: string;
-    private patientId: string;
+    private slotTime: string;
+    private patientID: string;
     private patientName: string;
     private reservedAt: Date;
     private appointmentStatus: string;
 
-    constructor(slotID: string, patientId: string, patientName: string) {
+    constructor(slotID: string, slotTime: string, patientID: string, patientName: string) {
         this.ID = randomUUID();
         this.slotID = slotID;
-        this.patientId = patientId;
+        this.slotTime = slotTime;
+        this.patientID = patientID;
         this.patientName = patientName;
         this.reservedAt = new Date(Date.now());
         this.appointmentStatus = AppointmentStatus.BOOKED
     }
-
-    
 
     public getID(): string {
         return this.ID;
@@ -32,12 +32,20 @@ export default class AppointmentBooking {
         this.slotID = slotID;
     }
 
-    public getPatientId(): string {
-        return this.patientId;
+    public getSlotTime(): string {
+        return this.slotTime;
     }
 
-    public setPatientId(patientId: string): void {
-        this.patientId = patientId;
+    public setSlotTime(slotTime: string): void {
+        this.slotTime = slotTime;
+    }
+
+    public getPatientID(): string {
+        return this.patientID;
+    }
+
+    public setPatientID(patientID: string): void {
+        this.patientID = patientID;
     }
 
     public getPatientName(): string {

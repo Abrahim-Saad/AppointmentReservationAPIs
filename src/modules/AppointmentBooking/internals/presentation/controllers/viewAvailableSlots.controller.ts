@@ -12,7 +12,8 @@ container.register<IAppointmentBookingGateway>('appointmentBookingGateway', new 
 container.register<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase', new ViewAvailableSlotsUseCase());
 
 export default class ViewAvailableSlotsController {
-  static viewAvailableSlotsUseCase: IViewAvailableSlotsUseCase = container.resolve<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase');
+  static viewAvailableSlotsUseCase: IViewAvailableSlotsUseCase =
+    container.resolve<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase');
 
   public static handle(req: Request, res: Response) {
     try {

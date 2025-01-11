@@ -5,7 +5,8 @@ import { container } from '../internals/shared/container';
 import ISlotFacade from './ISlot.facade';
 
 export default class SlotFacade implements ISlotFacade {
-  private slotService: SlotService = container.resolve<SlotService>('slotService');
+  private slotService: SlotService =
+    container.resolve<SlotService>('slotService');
 
   listDoctorAvailableSlots(): SlotDTO[] {
     const slots: Slot[] = this.slotService.listDoctorAvailableSlots();
@@ -18,5 +19,18 @@ export default class SlotFacade implements ISlotFacade {
       };
     });
     return slotDtos;
+  }
+
+  getSlotByID(slotID: string): SlotDTO | null {
+    const slot = this.slotService.getSlotByID(slotID);
+    if (slot) {
+      return {
+        ID: slot.getID(),
+        time: slot.getSlotTime(),
+        isReserved: slot.getIsReserved(),
+        cost: slot.getSlotCost(),
+      };
+    }
+    return null;
   }
 }

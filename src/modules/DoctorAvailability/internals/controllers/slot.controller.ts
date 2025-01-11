@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import SlotService from '../services/slot.service';
 import { container } from '../shared/container';
 import ICreateSlotDTO from './dtos/ICreateSlot.dto';
-import ISlotRepo from '../interfaces/slot.interface';
+import ISlotRepo from '../repositories/ISlot.repository';
 import SlotRepo from '../repositories/slot.repository';
 
 container.register<ISlotRepo>('slotRepo', new SlotRepo());

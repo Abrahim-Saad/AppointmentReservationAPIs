@@ -1,5 +1,5 @@
 import ICreateSlotDTO from '../controllers/dtos/ICreateSlot.dto';
-import ISlotRepo from '../interfaces/slot.interface';
+import ISlotRepo from './ISlot.repository';
 import Slot from '../models/slot.model';
 
 export default class SlotRepo implements ISlotRepo {
@@ -13,6 +13,11 @@ export default class SlotRepo implements ISlotRepo {
     return this.slots;
   }
 
+  public getSlotByID(slotID: string): Slot | null {
+    const slot = this.slots.find(slot => slot.getID() === slotID);
+    return slot || null;
+  }
+
   public findAvailableSlots(): Slot[] {
     return this.slots.filter((slot) => !slot.getIsReserved());
   }
@@ -24,9 +29,9 @@ export default class SlotRepo implements ISlotRepo {
     this.slots.push(slotBody);
   }
 
-  public updateSlotIsReservedStatus(slotId: string): void {
+  public updateSlotIsReservedStatus(slotID: string): void {
     this.slots = this.slots.map((slot) => {
-      if (slot.getID() == slotId) {
+      if (slot.getID() == slotID) {
         slot.setIsReserved(true);
       }
       return slot;
