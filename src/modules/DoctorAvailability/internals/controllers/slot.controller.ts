@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 
 import SlotService from '../services/slot.service';
-import { container } from '../../../../shared/container/container';
+import { dependencyManager } from '../../../../shared/dependencies/dependencyManager';
 import ICreateSlotDTO from './dtos/ICreateSlot.dto';
 
 
-const slotService: SlotService = container.resolve('slotService');
+const slotService: SlotService = dependencyManager.injectDependency('slotService');
 
 export default class SlotController {
   public static addSlot(req: Request, res: Response) {

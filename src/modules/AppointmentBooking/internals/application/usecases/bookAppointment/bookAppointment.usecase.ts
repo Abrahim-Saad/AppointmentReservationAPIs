@@ -1,4 +1,4 @@
-import { container } from '../../../../../../shared/container/container';
+import { dependencyManager } from '../../../../../../shared/dependencies/dependencyManager';
 import AppointmentBookedEvent from '../../../../../../shared/domain/events/appointmentBooked.event';
 import IEvent from '../../../../../../shared/domain/interfaces/IEvent.interface';
 import AppointmentBookingDTO from '../../../../../../shared/dto/appointmentBooking.dto';
@@ -11,15 +11,15 @@ import IBookAppointmentUseCase from './IBookAppointment.usecase';
 
 export default class BookAppointmentUseCase implements IBookAppointmentUseCase {
   private appointmentBookingRepo: IAppointmentBookingRepository =
-  container.resolve<IAppointmentBookingRepository>(
+  dependencyManager.injectDependency<IAppointmentBookingRepository>(
       'appointmentBookingRepository',
     );
   private appointmentBookingGateway: IAppointmentBookingGateway =
-  container.resolve<IAppointmentBookingGateway>(
+  dependencyManager.injectDependency<IAppointmentBookingGateway>(
       'appointmentBookingGateway',
     );
   private eventBus: InMemoryEventBus =
-  container.resolve<InMemoryEventBus>('inMemoryEventBus');
+  dependencyManager.injectDependency<InMemoryEventBus>('inMemoryEventBus');
 
   private validateSlot(slot: SlotDTO | null) {
     if (!slot?.time) {
@@ -42,7 +42,6 @@ export default class BookAppointmentUseCase implements IBookAppointmentUseCase {
       this.appointmentBookingRepo.createAppointmentBooking(
         createAppointmentBookingDTO,
       );
-    console.log(`🚀 ~ file: bookAppointment.usecase.ts:43 ~ BookAppointmentUseCase ~ appointmentBooking:`, appointmentBooking)
     const appointmentBookedEvent: IEvent = new AppointmentBookedEvent(
       appointmentBooking,
     );

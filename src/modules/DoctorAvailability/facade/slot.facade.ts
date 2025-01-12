@@ -1,12 +1,12 @@
 import SlotDTO from '../../../shared/dto/slot.dto';
 import Slot from '../internals/models/slot.model';
 import SlotService from '../internals/services/slot.service';
-import { container } from '../../../shared/container/container';
+import { dependencyManager } from '../../../shared/dependencies/dependencyManager';
 import ISlotFacade from './ISlot.facade';
 
 export default class SlotFacade implements ISlotFacade {
   private slotService: SlotService =
-    container.resolve<SlotService>('slotService');
+    dependencyManager.injectDependency<SlotService>('slotService');
 
   listDoctorAvailableSlots(): SlotDTO[] {
     const slots: Slot[] = this.slotService.listDoctorAvailableSlots();

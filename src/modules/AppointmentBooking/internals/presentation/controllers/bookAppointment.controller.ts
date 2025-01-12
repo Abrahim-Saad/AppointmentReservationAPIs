@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-import { container } from '../../../../../shared/container/container';
+import { dependencyManager } from '../../../../../shared/dependencies/dependencyManager';
 import IBookAppointmentUseCase from '../../application/usecases/bookAppointment/IBookAppointment.usecase';
 
 export default class BookAppointmentController {
   static bookAppointment: IBookAppointmentUseCase =
-    container.resolve<IBookAppointmentUseCase>('bookAppointmentUseCase');
+    dependencyManager.injectDependency<IBookAppointmentUseCase>('bookAppointmentUseCase');
 
   public static async handle(req: Request, res: Response) {
     try {

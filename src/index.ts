@@ -4,9 +4,9 @@ import 'dotenv-flow/config';
 import express from 'express';
 import morgan from 'morgan';
 
-import containerRegistry from './shared/container/containerRegistry';
+import initializeDependencies from './shared/dependencies/register.dependency';
 
-containerRegistry();
+initializeDependencies();
 
 import slotRouter from './modules/DoctorAvailability/internals/controllers/routes/slot.routes';
 import appointmentBookingRouter from './modules/AppointmentBooking/internals/presentation/routes';

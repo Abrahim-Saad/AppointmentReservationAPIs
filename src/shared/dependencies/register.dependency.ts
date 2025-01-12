@@ -1,4 +1,4 @@
-import { container } from './container';
+import { dependencyManager } from './dependencyManager';
 
 
 import { InMemoryEventBus } from '../infrastructure/inMemoryEventBus';
@@ -38,23 +38,23 @@ import IBookAppointmentUseCase from '../../modules/AppointmentBooking/internals/
 
 // Registering dependencies in the container
 
-export default function containerRegistry(): void {
+export default function initializeDependencies(): void {
     console.log('Registering dependencies in the container...');
     
     // Registrations order are based on dependencies order
-    container.register<InMemoryEventBus>('inMemoryEventBus', new InMemoryEventBus());
-    container.register<ISlotRepo>('slotRepo', new SlotRepo());
-    container.register<SlotService>('slotService', new SlotService());
-    container.register<IAppointmentBookingRepository>('appointmentBookingRepository', new AppointmentBookingRepository());
-    container.register('listUpcomingAppointmentBookingsUseCase', new ListUpcomingAppointmentBookingsUseCase());
-    container.register<IAppointmentBookingFacade>('appointmentBookingFacade', new AppointmentBookingFacade());
-    container.register<IAppointmentManagementGateway>('appointmentManagementGateway', new AppointmentManagementGateway());
-    container.register<ISlotFacade>('slotFacade', new SlotFacade());
-    container.register<IAppointmentBookingGateway>('appointmentBookingGateway', new AppointmentBookingGateway());
-    container.register<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase', new ViewAvailableSlotsUseCase());
-    container.register<IBookAppointmentUseCase>('bookAppointmentUseCase', new BookAppointmentUseCase());
-    container.register<IAppointmentManagementRepository>('appointmentManagementRepository', new AppointmentManagementRepository());
-    container.register<AppointmentManagementService>('appointmentManagementService', new AppointmentManagementService(container.resolve('appointmentManagementRepository')));
+    dependencyManager.registerDependency<InMemoryEventBus>('inMemoryEventBus', new InMemoryEventBus());
+    dependencyManager.registerDependency<ISlotRepo>('slotRepo', new SlotRepo());
+    dependencyManager.registerDependency<SlotService>('slotService', new SlotService());
+    dependencyManager.registerDependency<IAppointmentBookingRepository>('appointmentBookingRepository', new AppointmentBookingRepository());
+    dependencyManager.registerDependency('listUpcomingAppointmentBookingsUseCase', new ListUpcomingAppointmentBookingsUseCase());
+    dependencyManager.registerDependency<IAppointmentBookingFacade>('appointmentBookingFacade', new AppointmentBookingFacade());
+    dependencyManager.registerDependency<IAppointmentManagementGateway>('appointmentManagementGateway', new AppointmentManagementGateway());
+    dependencyManager.registerDependency<ISlotFacade>('slotFacade', new SlotFacade());
+    dependencyManager.registerDependency<IAppointmentBookingGateway>('appointmentBookingGateway', new AppointmentBookingGateway());
+    dependencyManager.registerDependency<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase', new ViewAvailableSlotsUseCase());
+    dependencyManager.registerDependency<IBookAppointmentUseCase>('bookAppointmentUseCase', new BookAppointmentUseCase());
+    dependencyManager.registerDependency<IAppointmentManagementRepository>('appointmentManagementRepository', new AppointmentManagementRepository());
+    dependencyManager.registerDependency<AppointmentManagementService>('appointmentManagementService', new AppointmentManagementService(dependencyManager.injectDependency('appointmentManagementRepository')));
 
     console.log('Registrations completed');
 };

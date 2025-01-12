@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { container } from '../../../../../shared/container/container';
+import { dependencyManager } from '../../../../../shared/dependencies/dependencyManager';
 import AppointmentManagementService from '../../core/application/appointmentManagement.service';
 
 
-const appointmentManagementService: AppointmentManagementService = container.resolve('appointmentManagementService');
+const appointmentManagementService: AppointmentManagementService = dependencyManager.injectDependency('appointmentManagementService');
 
 
 export default class AppointmentManagementController {

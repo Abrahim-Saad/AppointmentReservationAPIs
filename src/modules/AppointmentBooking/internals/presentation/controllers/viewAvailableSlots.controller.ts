@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 import IViewAvailableSlotsUseCase from '../../application/usecases/viewAvailableSlots/IViewAvailableSlots.usecase';
-import { container } from '../../../../../shared/container/container';
+import { dependencyManager } from '../../../../../shared/dependencies/dependencyManager';
 
 
 export default class ViewAvailableSlotsController {
   static viewAvailableSlotsUseCase: IViewAvailableSlotsUseCase =
-    container.resolve<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase');
+    dependencyManager.injectDependency<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase');
 
   public static handle(req: Request, res: Response) {
     try {

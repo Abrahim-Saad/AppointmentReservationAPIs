@@ -54,7 +54,7 @@ export default class AppointmentBookingRepository implements IAppointmentBooking
     listUpcomingAppointmentBookings(): AppointmentBookingDTO[] {
         return this.appointmentBookings
             .filter(appointment => {
-                const appointmentDate = new Date(appointment.getSlotTime()).toLocaleString();
+                const appointmentDate = appointment.getSlotTime().toLocaleString();
                 const now = new Date().toLocaleString();
                 if (appointmentDate > now && appointment.getAppointmentStatus() !== AppointmentStatus.CANCELLED) {
                     return appointment

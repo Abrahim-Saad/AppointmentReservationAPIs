@@ -1,13 +1,13 @@
 import SlotDTO from '../../../shared/dto/slot.dto';
 import ISlotFacade from '../../DoctorAvailability/facade/ISlot.facade';
-import { container } from '../../../shared/container/container';
+import { dependencyManager } from '../../../shared/dependencies/dependencyManager';
 import IAppointmentBookingGateway from './IAppointmentBooking.gateway';
 
 export default class AppointmentBookingGateway
   implements IAppointmentBookingGateway
 {
   private slotFacade: ISlotFacade =
-    container.resolve<ISlotFacade>('slotFacade');
+    dependencyManager.injectDependency<ISlotFacade>('slotFacade');
 
   public listDoctorAvailableSlots(): SlotDTO[] {
     return this.slotFacade.listDoctorAvailableSlots();

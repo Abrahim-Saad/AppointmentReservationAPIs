@@ -1,12 +1,12 @@
 import IAppointmentManagementRepository from "../../../../core/domain/repositories/IAppointmentManagement.repository";
 import AppointmentBookingDTO from "../../../../../../../shared/dto/appointmentBooking.dto";
-import { container } from "../../../../../../../shared/container/container";
+import { dependencyManager } from "../../../../../../../shared/dependencies/dependencyManager";
 import IAppointmentManagementGateway from "../../../../../gateway/IAppointmentManagement.gateway";
 
 
 export default class AppointmentManagementRepository implements IAppointmentManagementRepository{
 
-  private appointmentManagementGateway: IAppointmentManagementGateway = container.resolve<IAppointmentManagementGateway>('appointmentManagementGateway');
+  private appointmentManagementGateway: IAppointmentManagementGateway = dependencyManager.injectDependency<IAppointmentManagementGateway>('appointmentManagementGateway');
 
   listUpcomingAppointmentBookings(): AppointmentBookingDTO[] {
     return this.appointmentManagementGateway.listUpcomingAppointmentBookings();
