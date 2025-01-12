@@ -14,11 +14,11 @@ import SlotFacade from '../../modules/DoctorAvailability/facade/slot.facade';
 
 // Doctor Appointment Management Module Dependencies
 
-import IAppointmentManagmentGateway from '../../modules/DoctorAppointmentManagement/gateway/IAppointmentManagment.gateway';
-import AppointmentManagmentGateway from '../../modules/DoctorAppointmentManagement/gateway/appointmentManagment.gateway';
-import IAppointmentManagementRepository from '../../modules/DoctorAppointmentManagement/internals/core/domain/repositories/IAppointmentManagment.repository';
-import AppointmentManagmentService from '../../modules/DoctorAppointmentManagement/internals/core/application/appointmentManagement.service';
-import AppointmentManagmentRepository from '../../modules/DoctorAppointmentManagement/internals/shell/infrastructure/datastore/repositories/appointmentManagment.repository';
+import IAppointmentManagementGateway from '../../modules/DoctorAppointmentManagement/gateway/IAppointmentManagement.gateway';
+import AppointmentManagementGateway from '../../modules/DoctorAppointmentManagement/gateway/appointmentManagement.gateway';
+import IAppointmentManagementRepository from '../../modules/DoctorAppointmentManagement/internals/core/domain/repositories/IAppointmentManagement.repository';
+import AppointmentManagementService from '../../modules/DoctorAppointmentManagement/internals/core/application/appointmentManagement.service';
+import AppointmentManagementRepository from '../../modules/DoctorAppointmentManagement/internals/shell/infrastructure/datastore/repositories/appointmentManagement.repository';
 
 
 // Appointment Booking Module Dependencies
@@ -48,13 +48,13 @@ export default function containerRegistry(): void {
     container.register<IAppointmentBookingRepository>('appointmentBookingRepository', new AppointmentBookingRepository());
     container.register('listUpcomingAppointmentBookingsUseCase', new ListUpcomingAppointmentBookingsUseCase());
     container.register<IAppointmentBookingFacade>('appointmentBookingFacade', new AppointmentBookingFacade());
-    container.register<IAppointmentManagmentGateway>('appointmentManagmentGateway', new AppointmentManagmentGateway());
+    container.register<IAppointmentManagementGateway>('appointmentManagementGateway', new AppointmentManagementGateway());
     container.register<ISlotFacade>('slotFacade', new SlotFacade());
     container.register<IAppointmentBookingGateway>('appointmentBookingGateway', new AppointmentBookingGateway());
     container.register<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase', new ViewAvailableSlotsUseCase());
     container.register<IBookAppointmentUseCase>('bookAppointmentUseCase', new BookAppointmentUseCase());
-    container.register<IAppointmentManagementRepository>('appointmentManagmentRepository', new AppointmentManagmentRepository());
-    container.register<AppointmentManagmentService>('appointmentManagementService', new AppointmentManagmentService(container.resolve('appointmentManagmentRepository')));
+    container.register<IAppointmentManagementRepository>('appointmentManagementRepository', new AppointmentManagementRepository());
+    container.register<AppointmentManagementService>('appointmentManagementService', new AppointmentManagementService(container.resolve('appointmentManagementRepository')));
 
     console.log('Registrations completed');
 };

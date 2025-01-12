@@ -1,8 +1,8 @@
-import IAppointmentManagementRepository from "../domain/repositories/IAppointmentManagment.repository";
+import IAppointmentManagementRepository from "../domain/repositories/IAppointmentManagement.repository";
 import AppointmentBookingDTO from "../../../../../shared/dto/appointmentBooking.dto";
 
 
-export default class AppointmentManagmentService {
+export default class AppointmentManagementService {
 
     private appointmentManagementRepository: IAppointmentManagementRepository;
 

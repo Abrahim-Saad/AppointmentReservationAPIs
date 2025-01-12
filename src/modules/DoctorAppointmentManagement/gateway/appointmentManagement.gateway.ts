@@ -1,14 +1,14 @@
-import AppoinmentBookingDTO from '../../../shared/dto/appointmentBooking.dto';
+import AppointmentBookingDTO from '../../../shared/dto/appointmentBooking.dto';
 import IAppointmentBookingFacade from '../../AppointmentBooking/facade/IAppointmentBooking.facade';
 import { container } from '../../../shared/container/container';
-import IAppointmentManagmentGateway from './IAppointmentManagment.gateway';
+import IAppointmentManagementGateway from './IAppointmentManagement.gateway';
 
 
-export default class AppointmentManagmentGateway implements IAppointmentManagmentGateway{
+export default class AppointmentManagementGateway implements IAppointmentManagementGateway{
 
   private appointmentBookingFacade: IAppointmentBookingFacade = container.resolve<IAppointmentBookingFacade>('appointmentBookingFacade');
 
-  listUpcomingAppointmentBookings(): AppoinmentBookingDTO[] {
+  listUpcomingAppointmentBookings(): AppointmentBookingDTO[] {
     return this.appointmentBookingFacade.listUpcomingAppointmentBookings();
   }
 };
