@@ -3,7 +3,7 @@ import { AppointmentBookingEvents } from '../../enums/appointmentBookingEvents.e
 import IEvent from '../interfaces/IEvent.interface';
 import { randomUUID } from 'crypto';
 
-export default class AppointmentBookedEvent implements IEvent {
+export default class AppointmentStatusChangedEvent implements IEvent {
     eventID: string;
     eventName: string;
     occurredOn: Date;
@@ -13,8 +13,9 @@ export default class AppointmentBookedEvent implements IEvent {
         this.eventID = randomUUID();
         this.occurredOn = new Date(Date.now());
         this.eventData = eventData;
-        this.eventName = AppointmentBookingEvents.APPOINTMENT_BOOKED;
+        this.eventName = AppointmentBookingEvents.APPOINTMENT_STATUS_CHANGED;
     }
+    
     public getEventID(): string {
         return this.eventID;
     }
