@@ -15,6 +15,15 @@ export default class NotificationService implements INotificationService {
   }
 
   async sendNotification(event: IEvent): Promise<void> {
-    console.log('Sending notification:', event.eventData);
+    await this.sendNotificationToPatient(event);
+    await this.sendNotificationToDoctor(event);
+  }
+
+  async sendNotificationToPatient(event: IEvent): Promise<void> {
+    console.log('Sending notification to patient:', event.eventData);
+  }
+
+  async sendNotificationToDoctor(event: IEvent): Promise<void> {
+    console.log('Sending notification to doctor:', event.eventData);
   }
 }

@@ -2,6 +2,8 @@ import { dependencyManager } from './dependencyManager';
 
 
 import { InMemoryEventBus } from '../infrastructure/inMemoryEventBus';
+import INotificationService from '../../modules/AppointmentConfirmation/INotification.service';
+import NotificationService from '../../modules/AppointmentConfirmation/notification.service';
 
 // Doctor Availability Module Dependencies
 
@@ -43,6 +45,7 @@ export default function initializeDependencies(): void {
     
     // Registrations order are based on dependencies order
     dependencyManager.registerDependency<InMemoryEventBus>('inMemoryEventBus', new InMemoryEventBus());
+    dependencyManager.registerDependency<INotificationService>('notificationService', new NotificationService());
     dependencyManager.registerDependency<ISlotRepo>('slotRepo', new SlotRepo());
     dependencyManager.registerDependency<SlotService>('slotService', new SlotService());
     dependencyManager.registerDependency<IAppointmentBookingRepository>('appointmentBookingRepository', new AppointmentBookingRepository());
