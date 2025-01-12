@@ -1,5 +1,6 @@
 import { dependencyManager } from '../../shared/dependencies/dependencyManager';
 import IEvent from '../../shared/domain/interfaces/IEvent.interface';
+import { AppointmentBookingEvents } from '../../shared/enums/appointmentBookingEvents.enum';
 import { InMemoryEventBus } from '../../shared/infrastructure/inMemoryEventBus';
 import INotificationService from './INotification.service';
 
@@ -8,10 +9,7 @@ export default class NotificationService implements INotificationService {
 
   constructor() {
     // TODO: create an enum for the events
-    this.eventBus.subscribe(
-      'AppointmentBooked',
-      this.sendNotification.bind(this),
-    );
+    this.eventBus.subscribe(AppointmentBookingEvents.APPOINTMENT_BOOKED, this.sendNotification.bind(this),);
   }
 
   async sendNotification(event: IEvent): Promise<void> {

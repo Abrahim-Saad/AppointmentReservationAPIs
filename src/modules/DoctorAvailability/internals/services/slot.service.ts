@@ -4,6 +4,7 @@ import ICreateSlotDTO from '../controllers/dtos/ICreateSlot.dto';
 import { dependencyManager } from '../../../../shared/dependencies/dependencyManager';
 import { InMemoryEventBus } from '../../../../shared/infrastructure/inMemoryEventBus';
 import IEvent from '../../../../shared/domain/interfaces/IEvent.interface';
+import { AppointmentBookingEvents } from '../../../../shared/enums/appointmentBookingEvents.enum';
 
 export default class SlotService {
   private slotRepo: ISlotRepo = dependencyManager.injectDependency<ISlotRepo>('slotRepo');
@@ -11,7 +12,7 @@ export default class SlotService {
   
   constructor () {
     // TODO: create an enum for the events
-    this.eventBus.subscribe('AppointmentBooked', this.updateSlotIsReservedStatus.bind(this));
+    this.eventBus.subscribe(AppointmentBookingEvents.APPOINTMENT_BOOKED, this.updateSlotIsReservedStatus.bind(this));
   }
 
   public listSlots(): Slot[] {
