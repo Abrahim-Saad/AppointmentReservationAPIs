@@ -1,14 +1,13 @@
 import Slot from '../models/slot.model';
 import ISlotRepo from '../repositories/ISlot.repository';
 import ICreateSlotDTO from '../controllers/dtos/ICreateSlot.dto';
-import { container as DoctorAvailabilityContainer } from '../shared/container';
-import { container as EventBusContainer } from '../../../../shared/container/container'
+import { container } from '../../../../shared/container/container';
 import { InMemoryEventBus } from '../../../../shared/infrastructure/inMemoryEventBus';
 import IEvent from '../../../../shared/domain/interfaces/IEvent.interface';
 
 export default class SlotService {
-  private slotRepo: ISlotRepo = DoctorAvailabilityContainer.resolve<ISlotRepo>('slotRepo');
-  private eventBus: InMemoryEventBus = EventBusContainer.resolve<InMemoryEventBus>('inMemoryEventBus');
+  private slotRepo: ISlotRepo = container.resolve<ISlotRepo>('slotRepo');
+  private eventBus: InMemoryEventBus = container.resolve<InMemoryEventBus>('inMemoryEventBus');
   
   constructor () {
     // TODO: create an enum for the events

@@ -1,15 +1,7 @@
 import { Request, Response } from 'express';
 import IViewAvailableSlotsUseCase from '../../application/usecases/viewAvailableSlots/IViewAvailableSlots.usecase';
-import { container } from '../../shared/container';
-import ISlotFacade from '../../../../DoctorAvailability/facade/ISlot.facade';
-import SlotFacade from '../../../../DoctorAvailability/facade/slot.facade';
-import IAppointmentBookingGateway from '../../../gateway/IAppointmentBooking.gateway';
-import AppointmentBookingGateway from '../../../gateway/appointmentBooking.gateway';
-import ViewAvailableSlotsUseCase from '../../application/usecases/viewAvailableSlots/viewAvailableSlots.usecase';
+import { container } from '../../../../../shared/container/container';
 
-container.register<ISlotFacade>('slotFacade', new SlotFacade());
-container.register<IAppointmentBookingGateway>('appointmentBookingGateway', new AppointmentBookingGateway());
-container.register<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase', new ViewAvailableSlotsUseCase());
 
 export default class ViewAvailableSlotsController {
   static viewAvailableSlotsUseCase: IViewAvailableSlotsUseCase =

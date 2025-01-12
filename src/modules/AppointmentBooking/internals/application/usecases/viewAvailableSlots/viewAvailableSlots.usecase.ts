@@ -1,5 +1,5 @@
 import SlotDTO from '../../../../../../shared/dto/slot.dto';
-import { container } from '../../../../internals/shared/container';
+import { container } from '../../../../../../shared/container/container';
 import IAppointmentBookingGateway from '../../../../gateway/IAppointmentBooking.gateway';
 import IViewAvailableSlotsUseCase from './IViewAvailableSlots.usecase';
 

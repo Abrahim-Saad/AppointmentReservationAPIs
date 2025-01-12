@@ -1,13 +1,9 @@
 import { Request, Response } from 'express';
 
 import SlotService from '../services/slot.service';
-import { container } from '../shared/container';
+import { container } from '../../../../shared/container/container';
 import ICreateSlotDTO from './dtos/ICreateSlot.dto';
-import ISlotRepo from '../repositories/ISlot.repository';
-import SlotRepo from '../repositories/slot.repository';
 
-container.register<ISlotRepo>('slotRepo', new SlotRepo());
-container.register<SlotService>('slotService', new SlotService());
 
 const slotService: SlotService = container.resolve('slotService');
 

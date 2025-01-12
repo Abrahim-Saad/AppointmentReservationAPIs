@@ -1,10 +1,10 @@
-import { container as EventBusContainer } from '../../shared/container/container';
+import { container } from '../../shared/container/container';
 import IEvent from '../../shared/domain/interfaces/IEvent.interface';
 import { InMemoryEventBus } from '../../shared/infrastructure/inMemoryEventBus';
 import INotificationService from './INotification.service';
 
 export default class NotificationService implements INotificationService {
-  private eventBus: InMemoryEventBus = EventBusContainer.resolve<InMemoryEventBus>('inMemoryEventBus');
+  private eventBus: InMemoryEventBus = container.resolve<InMemoryEventBus>('inMemoryEventBus');
 
   constructor() {
     // TODO: create an enum for the events

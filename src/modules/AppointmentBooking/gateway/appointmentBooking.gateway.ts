@@ -1,6 +1,6 @@
 import SlotDTO from '../../../shared/dto/slot.dto';
 import ISlotFacade from '../../DoctorAvailability/facade/ISlot.facade';
-import { container } from '../internals/shared/container';
+import { container } from '../../../shared/container/container';
 import IAppointmentBookingGateway from './IAppointmentBooking.gateway';
 
 export default class AppointmentBookingGateway

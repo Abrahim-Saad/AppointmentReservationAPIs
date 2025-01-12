@@ -1,7 +1,7 @@
 import SlotDTO from '../../../shared/dto/slot.dto';
 import Slot from '../internals/models/slot.model';
 import SlotService from '../internals/services/slot.service';
-import { container } from '../internals/shared/container';
+import { container } from '../../../shared/container/container';
 import ISlotFacade from './ISlot.facade';
 
 export default class SlotFacade implements ISlotFacade {

@@ -1,4 +1,3 @@
-
 import AppointmentBookingDTO from "../../../../../shared/dto/appointmentBooking.dto";
 import AppointmentBooking from "../../domain/entities/appointmentBooking.entity";
 import { AppointmentStatus } from "../../domain/enums/appointmentStatus.enum";

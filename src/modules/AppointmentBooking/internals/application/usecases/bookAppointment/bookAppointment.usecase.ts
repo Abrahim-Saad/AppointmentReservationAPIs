@@ -1,26 +1,25 @@
-import { container as EventBusContainer } from '../../../../../../shared/container/container';
+import { container } from '../../../../../../shared/container/container';
 import AppointmentBookedEvent from '../../../../../../shared/domain/events/appointmentBooked.event';
 import IEvent from '../../../../../../shared/domain/interfaces/IEvent.interface';
 import AppointmentBookingDTO from '../../../../../../shared/dto/appointmentBooking.dto';
 import SlotDTO from '../../../../../../shared/dto/slot.dto';
 import { InMemoryEventBus } from '../../../../../../shared/infrastructure/inMemoryEventBus';
 import IAppointmentBookingGateway from '../../../../gateway/IAppointmentBooking.gateway';
-import { container as AppointmentBookingContainer } from '../../../../internals/shared/container';
 import IAppointmentBookingRepository from '../../../domain/interfaces/IAppointmentBooking.repository';
 import ICreateAppointmentBookingDTO from '../../../presentation/dtos/ICreateAppointmentBooking.dto';
 import IBookAppointmentUseCase from './IBookAppointment.usecase';
 
 export default class BookAppointmentUseCase implements IBookAppointmentUseCase {
   private appointmentBookingRepo: IAppointmentBookingRepository =
-    AppointmentBookingContainer.resolve<IAppointmentBookingRepository>(
+  container.resolve<IAppointmentBookingRepository>(
       'appointmentBookingRepository',
     );
   private appointmentBookingGateway: IAppointmentBookingGateway =
-    AppointmentBookingContainer.resolve<IAppointmentBookingGateway>(
+  container.resolve<IAppointmentBookingGateway>(
       'appointmentBookingGateway',
     );
   private eventBus: InMemoryEventBus =
-    EventBusContainer.resolve<InMemoryEventBus>('inMemoryEventBus');
+  container.resolve<InMemoryEventBus>('inMemoryEventBus');
 
   private validateSlot(slot: SlotDTO | null) {
     if (!slot?.time) {
