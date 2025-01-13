@@ -3,7 +3,7 @@ import { AppointmentBookingEvents } from '../../enums/appointmentBookingEvents.e
 import IEvent from '../interfaces/IEvent.interface';
 import { randomUUID } from 'crypto';
 
-export default class AppointmentStatusChangedEvent implements IEvent {
+export default class AppointmentBookingStatusChangedEvent implements IEvent {
     eventID: string;
     eventName: string;
     occurredOn: Date;

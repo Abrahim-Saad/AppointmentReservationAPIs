@@ -4,7 +4,7 @@ import IUpdateAppointmentBookingStatusDTO from '../../presentation/dtos/IUpdateA
 
 export default interface IAppointmentBookingRepository {
     createAppointmentBooking(createAppointmentBookingDTO: ICreateAppointmentBookingDTO): AppointmentBookingDTO;
-    getAppointmentBookingByID(ID: string): AppointmentBookingDTO;
+    getAppointmentBookingByID(ID: string): AppointmentBookingDTO | null;
     updateAppointmentBookingStatus(updateAppointmentBookingStatusDTO: IUpdateAppointmentBookingStatusDTO): void;
     listAppointmentBookings(): AppointmentBookingDTO[];
     listUpcomingAppointmentBookings(): AppointmentBookingDTO[];

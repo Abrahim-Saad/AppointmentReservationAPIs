@@ -10,7 +10,7 @@ export default class SlotFacade implements ISlotFacade {
 
   listDoctorAvailableSlots(): SlotDTO[] {
     const slots: Slot[] = this.slotService.listDoctorAvailableSlots();
-    const slotDtos: SlotDTO[] = slots.map((slot: Slot) => {
+    const slotDTOs: SlotDTO[] = slots.map((slot: Slot) => {
       return {
         ID: slot.getID(),
         time: slot.getSlotTime(),
@@ -18,7 +18,7 @@ export default class SlotFacade implements ISlotFacade {
         cost: slot.getSlotCost(),
       };
     });
-    return slotDtos;
+    return slotDTOs;
   }
 
   getSlotByID(slotID: string): SlotDTO | null {

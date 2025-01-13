@@ -10,4 +10,11 @@ AppointmentManagementRouter.get(
   },
 );
 
+AppointmentManagementRouter.patch(
+  '/status',
+  (req: Request, res: Response): void => {
+    AppointmentManagementController.updateAppointmentBookingStatus(req, res);
+  },
+);
+
 export default AppointmentManagementRouter;

@@ -22,9 +22,9 @@ export default class SlotRepo implements ISlotRepo {
     return this.slots.filter((slot) => !slot.getIsReserved());
   }
 
-  public create(createSlotDto: ICreateSlotDTO): void {
-    const time = createSlotDto.time;
-    const cost = createSlotDto.cost;
+  public create(createSlotDTO: ICreateSlotDTO): void {
+    const time = createSlotDTO.time;
+    const cost = createSlotDTO.cost;
     const slotBody = new Slot(time, cost);
     this.slots.push(slotBody);
   }

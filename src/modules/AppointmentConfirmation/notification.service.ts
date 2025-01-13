@@ -5,14 +5,27 @@ import { InMemoryEventBus } from '../../shared/infrastructure/inMemoryEventBus';
 import INotificationService from './INotification.service';
 
 export default class NotificationService implements INotificationService {
-  private eventBus: InMemoryEventBus = dependencyManager.injectDependency<InMemoryEventBus>('inMemoryEventBus');
+  private eventBus: InMemoryEventBus =
+    dependencyManager.injectDependency<InMemoryEventBus>('inMemoryEventBus');
 
   constructor() {
     // TODO: create an enum for the events
-    this.eventBus.subscribe(AppointmentBookingEvents.APPOINTMENT_BOOKED, this.sendNotification.bind(this),);
+    this.eventBus.subscribe(
+      AppointmentBookingEvents.APPOINTMENT_BOOKED,
+      this.sendAppointmentBookedNotification.bind(this),
+    );
+    this.eventBus.subscribe(
+      AppointmentBookingEvents.APPOINTMENT_STATUS_CHANGED,
+      this.sendAppointmentStatusChangedNotification.bind(this),
+    );
   }
 
-  async sendNotification(event: IEvent): Promise<void> {
+  async sendAppointmentBookedNotification(event: IEvent): Promise<void> {
+    await this.sendNotificationToPatient(event);
+    await this.sendNotificationToDoctor(event);
+  }
+
+  async sendAppointmentStatusChangedNotification(event: IEvent): Promise<void> {
     await this.sendNotificationToPatient(event);
     await this.sendNotificationToDoctor(event);
   }

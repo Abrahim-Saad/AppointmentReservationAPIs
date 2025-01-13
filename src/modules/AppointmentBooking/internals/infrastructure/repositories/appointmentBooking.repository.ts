@@ -30,7 +30,8 @@ export default class AppointmentBookingRepository implements IAppointmentBooking
             return {
                 slotID: appointment.getID(),
                 patientID: appointment.getPatientID(),
-                patientName: appointment.getPatientName()
+                patientName: appointment.getPatientName(),
+                appointmentStatus: appointment.getAppointmentStatus()
             } as AppointmentBookingDTO;
         }
         throw new Error(`AppointmentBooking with ID ${ID} not found`);

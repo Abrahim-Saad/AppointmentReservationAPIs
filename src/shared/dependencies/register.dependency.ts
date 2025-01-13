@@ -36,6 +36,9 @@ import IViewAvailableSlotsUseCase from '../../modules/AppointmentBooking/interna
 import ViewAvailableSlotsUseCase from '../../modules/AppointmentBooking/internals/application/usecases/viewAvailableSlots/viewAvailableSlots.usecase';
 import BookAppointmentUseCase from '../../modules/AppointmentBooking/internals/application/usecases/bookAppointment/bookAppointment.usecase';
 import IBookAppointmentUseCase from '../../modules/AppointmentBooking/internals/application/usecases/bookAppointment/IBookAppointment.usecase';
+import IUpdateAppointmentBookingStatusUseCase from '../../modules/AppointmentBooking/internals/application/usecases/updateAppointmentBookingStatus/IUpdateAppointmentBookingStatus.usecase';
+import UpdateAppointmentBookingStatusUseCase from '../../modules/AppointmentBooking/internals/application/usecases/updateAppointmentBookingStatus/updateAppointmentBookingStatus.usecase';
+import IListUpcomingAppointmentBookingsUseCase from '../../modules/AppointmentBooking/internals/application/usecases/listUpcomingAppointmentBookings/IListUpcomingAppointmentBookings.usecase';
 
 
 // Registering dependencies in the container
@@ -49,7 +52,8 @@ export default function initializeDependencies(): void {
     dependencyManager.registerDependency<ISlotRepo>('slotRepo', new SlotRepo());
     dependencyManager.registerDependency<SlotService>('slotService', new SlotService());
     dependencyManager.registerDependency<IAppointmentBookingRepository>('appointmentBookingRepository', new AppointmentBookingRepository());
-    dependencyManager.registerDependency('listUpcomingAppointmentBookingsUseCase', new ListUpcomingAppointmentBookingsUseCase());
+    dependencyManager.registerDependency<IListUpcomingAppointmentBookingsUseCase>('listUpcomingAppointmentBookingsUseCase', new ListUpcomingAppointmentBookingsUseCase());
+    dependencyManager.registerDependency<IUpdateAppointmentBookingStatusUseCase>('updateAppointmentBookingStatusUseCase', new UpdateAppointmentBookingStatusUseCase());
     dependencyManager.registerDependency<IAppointmentBookingFacade>('appointmentBookingFacade', new AppointmentBookingFacade());
     dependencyManager.registerDependency<IAppointmentManagementGateway>('appointmentManagementGateway', new AppointmentManagementGateway());
     dependencyManager.registerDependency<ISlotFacade>('slotFacade', new SlotFacade());
@@ -57,7 +61,7 @@ export default function initializeDependencies(): void {
     dependencyManager.registerDependency<IViewAvailableSlotsUseCase>('viewAvailableSlotsUseCase', new ViewAvailableSlotsUseCase());
     dependencyManager.registerDependency<IBookAppointmentUseCase>('bookAppointmentUseCase', new BookAppointmentUseCase());
     dependencyManager.registerDependency<IAppointmentManagementRepository>('appointmentManagementRepository', new AppointmentManagementRepository());
-    dependencyManager.registerDependency<AppointmentManagementService>('appointmentManagementService', new AppointmentManagementService(dependencyManager.injectDependency('appointmentManagementRepository')));
+    dependencyManager.registerDependency<AppointmentManagementService>('appointmentManagementService', new AppointmentManagementService());
 
     console.log('Registrations completed');
 };
