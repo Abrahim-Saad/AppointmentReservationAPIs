@@ -2,7 +2,10 @@ class DependencyManager {
     private dependencies: Map<string, unknown> = new Map();
 
     registerDependency<T>(dependencyName: string, dependencyType: T): void {
-        this.dependencies.set(dependencyName, dependencyType);
+        const isDependencyRegistered = this.dependencies.get(dependencyName);
+        if (!isDependencyRegistered) {
+            this.dependencies.set(dependencyName, dependencyType);
+        }
     }
 
     injectDependency<T>(dependencyName: string): T {

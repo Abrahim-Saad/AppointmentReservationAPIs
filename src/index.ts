@@ -1,7 +1,7 @@
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import 'dotenv-flow/config';
-import express from 'express';
+import express, { Express } from 'express';
 import morgan from 'morgan';
 
 import initializeDependencies from './shared/dependencies/register.dependency';
@@ -12,7 +12,7 @@ import slotRouter from './modules/DoctorAvailability/internals/controllers/route
 import appointmentBookingRouter from './modules/AppointmentBooking/internals/presentation/routes';
 import AppointmentManagementRouter from './modules/DoctorAppointmentManagement/internals/shell/controllers/routes/appointmentManagement.route';
 
-const app = express();
+const app: Express = express();
 const port = process.env.PORT;
 
 app.use(morgan('dev'));
@@ -27,3 +27,5 @@ app.listen(port, () => {
     `Running in [${process.env.NODE_ENV} environment] at port: [${port}]`,
   );
 });
+
+export default app;
