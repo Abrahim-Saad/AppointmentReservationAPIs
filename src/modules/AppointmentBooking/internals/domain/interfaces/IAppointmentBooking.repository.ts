@@ -1,11 +1,11 @@
 import AppointmentBookingDTO from '../../../../../shared/dto/appointmentBooking.dto';
-import ICreateAppointmentBookingDTO from '../../presentation/dtos/ICreateAppointmentBooking.dto';
-import IUpdateAppointmentBookingStatusDTO from '../../presentation/dtos/IUpdateAppointmentBookingStatus.dto';
+import CreateAppointmentBookingDTO from '../../presentation/dtos/createAppointmentBooking.dto';
+import UpdateAppointmentBookingStatusDTO from '../../presentation/dtos/updateAppointmentBookingStatus.dto';
 
 export default interface IAppointmentBookingRepository {
-    createAppointmentBooking(createAppointmentBookingDTO: ICreateAppointmentBookingDTO): AppointmentBookingDTO;
+    createAppointmentBooking(createAppointmentBookingDTO: CreateAppointmentBookingDTO): AppointmentBookingDTO;
     getAppointmentBookingByID(ID: string): AppointmentBookingDTO | null;
-    updateAppointmentBookingStatus(updateAppointmentBookingStatusDTO: IUpdateAppointmentBookingStatusDTO): void;
+    updateAppointmentBookingStatus(updateAppointmentBookingStatusDTO: UpdateAppointmentBookingStatusDTO): void;
     listAppointmentBookings(): AppointmentBookingDTO[];
     listUpcomingAppointmentBookings(): AppointmentBookingDTO[];
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { dependencyManager } from '../../../../../shared/dependencies/dependencyManager';
-import IUpdateAppointmentBookingStatusDTO from '../../../../AppointmentBooking/internals/presentation/dtos/IUpdateAppointmentBookingStatus.dto';
+import UpdateAppointmentBookingStatusDTO from '../../../../AppointmentBooking/internals/presentation/dtos/updateAppointmentBookingStatus.dto';
 import AppointmentManagementService from '../../core/application/appointmentManagement.service';
 
 const appointmentManagementService: AppointmentManagementService =
@@ -20,7 +20,7 @@ export default class AppointmentManagementController {
 
   public static updateAppointmentBookingStatus(req: Request, res: Response) {
     try {
-      const updatedAppointmentBookingStatusDTO: IUpdateAppointmentBookingStatusDTO =
+      const updatedAppointmentBookingStatusDTO: UpdateAppointmentBookingStatusDTO =
         req.body;
       appointmentManagementService.updateAppointmentBookingStatus(
         updatedAppointmentBookingStatusDTO,

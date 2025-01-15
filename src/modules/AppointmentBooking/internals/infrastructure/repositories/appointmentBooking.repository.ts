@@ -2,13 +2,13 @@ import AppointmentBookingDTO from "../../../../../shared/dto/appointmentBooking.
 import AppointmentBooking from "../../domain/entities/appointmentBooking.entity";
 import { AppointmentStatus } from "../../domain/enums/appointmentStatus.enum";
 import IAppointmentBookingRepository from "../../domain/interfaces/IAppointmentBooking.repository";
-import ICreateAppointmentBookingDTO from "../../presentation/dtos/ICreateAppointmentBooking.dto";
-import IUpdateAppointmentBookingStatusDTO from "../../presentation/dtos/IUpdateAppointmentBookingStatus.dto";
+import CreateAppointmentBookingDTO from "../../presentation/dtos/createAppointmentBooking.dto";
+import UpdateAppointmentBookingStatusDTO from "../../presentation/dtos/updateAppointmentBookingStatus.dto";
 
 export default class AppointmentBookingRepository implements IAppointmentBookingRepository {
     private appointmentBookings: AppointmentBooking[] = [];
 
-    createAppointmentBooking(appointment: ICreateAppointmentBookingDTO): AppointmentBookingDTO {
+    createAppointmentBooking(appointment: CreateAppointmentBookingDTO): AppointmentBookingDTO {
         const newAppointment = new AppointmentBooking(
             appointment.slotID,
             appointment.slotTime,
@@ -45,7 +45,7 @@ export default class AppointmentBookingRepository implements IAppointmentBooking
         } as AppointmentBookingDTO));
     }
 
-    updateAppointmentBookingStatus(updateDTO: IUpdateAppointmentBookingStatusDTO): void {
+    updateAppointmentBookingStatus(updateDTO: UpdateAppointmentBookingStatusDTO): void {
         const appointment = this.appointmentBookings.find(appointment => appointment.getID() === updateDTO.ID);
         if (appointment) {
             appointment.setAppointmentStatus(updateDTO.appointmentStatus);

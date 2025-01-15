@@ -1,4 +1,4 @@
-import ICreateSlotDTO from '../controllers/dtos/ICreateSlot.dto';
+import CreateSlotDTO from '../controllers/dtos/createSlot.dto';
 import ISlotRepo from './ISlot.repository';
 import Slot from '../models/slot.model';
 
@@ -22,7 +22,7 @@ export default class SlotRepo implements ISlotRepo {
     return this.slots.filter((slot) => !slot.getIsReserved());
   }
 
-  public create(createSlotDTO: ICreateSlotDTO): void {
+  public create(createSlotDTO: CreateSlotDTO): void {
     const time = createSlotDTO.time;
     const cost = createSlotDTO.cost;
     const slotBody = new Slot(time, cost);

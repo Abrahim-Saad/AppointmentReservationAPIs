@@ -9,7 +9,7 @@ export default class NotificationService implements INotificationService {
     dependencyManager.injectDependency<InMemoryEventBus>('inMemoryEventBus');
 
   constructor() {
-    // TODO: create an enum for the events
+    
     this.eventBus.subscribe(
       AppointmentBookingEvents.APPOINTMENT_BOOKED,
       this.sendAppointmentBookedNotification.bind(this),

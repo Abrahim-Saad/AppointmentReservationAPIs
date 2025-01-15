@@ -2,7 +2,7 @@ import AppointmentBookingDTO from '../../../shared/dto/appointmentBooking.dto';
 import IAppointmentBookingFacade from '../../AppointmentBooking/facade/IAppointmentBooking.facade';
 import { dependencyManager } from '../../../shared/dependencies/dependencyManager';
 import IAppointmentManagementGateway from './IAppointmentManagement.gateway';
-import IUpdateAppointmentBookingStatusDTO from '../../AppointmentBooking/internals/presentation/dtos/IUpdateAppointmentBookingStatus.dto';
+import UpdateAppointmentBookingStatusDTO from '../../AppointmentBooking/internals/presentation/dtos/updateAppointmentBookingStatus.dto';
 
 
 export default class AppointmentManagementGateway implements IAppointmentManagementGateway{
@@ -12,7 +12,7 @@ export default class AppointmentManagementGateway implements IAppointmentManagem
     return this.appointmentBookingFacade.listUpcomingAppointmentBookings();
   }
 
-  updateAppointmentBookingStatus(appointmentBookingStatusDTO: IUpdateAppointmentBookingStatusDTO): void {
+  updateAppointmentBookingStatus(appointmentBookingStatusDTO: UpdateAppointmentBookingStatusDTO): void {
     this.appointmentBookingFacade.updateAppointmentBookingStatus(appointmentBookingStatusDTO);
   }
 };

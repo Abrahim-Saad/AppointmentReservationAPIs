@@ -6,7 +6,7 @@ import SlotDTO from '../../../../../../shared/dto/slot.dto';
 import { InMemoryEventBus } from '../../../../../../shared/infrastructure/inMemoryEventBus';
 import IAppointmentBookingGateway from '../../../../gateway/IAppointmentBooking.gateway';
 import IAppointmentBookingRepository from '../../../domain/interfaces/IAppointmentBooking.repository';
-import ICreateAppointmentBookingDTO from '../../../presentation/dtos/ICreateAppointmentBooking.dto';
+import CreateAppointmentBookingDTO from '../../../presentation/dtos/createAppointmentBooking.dto';
 import IBookAppointmentUseCase from './IBookAppointment.usecase';
 
 export default class BookAppointmentUseCase implements IBookAppointmentUseCase {
@@ -31,7 +31,7 @@ export default class BookAppointmentUseCase implements IBookAppointmentUseCase {
   }
 
   async execute(
-    createAppointmentBookingDTO: ICreateAppointmentBookingDTO,
+    createAppointmentBookingDTO: CreateAppointmentBookingDTO,
   ): Promise<void> {
     const slot = this.appointmentBookingGateway.getSlotByID(
       createAppointmentBookingDTO.slotID,

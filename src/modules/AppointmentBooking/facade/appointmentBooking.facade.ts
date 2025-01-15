@@ -2,7 +2,7 @@ import { dependencyManager } from '../../../shared/dependencies/dependencyManage
 import AppointmentBookingDTO from '../../../shared/dto/appointmentBooking.dto';
 import IListUpcomingAppointmentBookingsUseCase from '../internals/application/usecases/listUpcomingAppointmentBookings/IListUpcomingAppointmentBookings.usecase';
 import IUpdateAppointmentBookingStatusUseCase from '../internals/application/usecases/updateAppointmentBookingStatus/IUpdateAppointmentBookingStatus.usecase';
-import IUpdateAppointmentBookingStatusDTO from '../internals/presentation/dtos/IUpdateAppointmentBookingStatus.dto';
+import UpdateAppointmentBookingStatusDTO from '../internals/presentation/dtos/updateAppointmentBookingStatus.dto';
 import IAppointmentBookingFacade from './IAppointmentBooking.facade';
 
 export default class AppointmentBookingFacade
@@ -23,7 +23,7 @@ export default class AppointmentBookingFacade
   }
 
   updateAppointmentBookingStatus(
-    appointmentBookingStatus: IUpdateAppointmentBookingStatusDTO,
+    appointmentBookingStatus: UpdateAppointmentBookingStatusDTO,
   ): void {
     this.updateAppointmentBookingStatusUseCase.execute(
       appointmentBookingStatus,

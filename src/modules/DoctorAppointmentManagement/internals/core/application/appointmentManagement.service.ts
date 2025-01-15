@@ -1,6 +1,6 @@
 import { dependencyManager } from '../../../../../shared/dependencies/dependencyManager';
 import AppointmentBookingDTO from '../../../../../shared/dto/appointmentBooking.dto';
-import IUpdateAppointmentBookingStatusDTO from '../../../../AppointmentBooking/internals/presentation/dtos/IUpdateAppointmentBookingStatus.dto';
+import UpdateAppointmentBookingStatusDTO from '../../../../AppointmentBooking/internals/presentation/dtos/updateAppointmentBookingStatus.dto';
 import IAppointmentManagementRepository from '../domain/repositories/IAppointmentManagement.repository';
 
 export default class AppointmentManagementService {
@@ -14,7 +14,7 @@ export default class AppointmentManagementService {
   }
 
   updateAppointmentBookingStatus(
-    updateAppointmentBookingStatusDTO: IUpdateAppointmentBookingStatusDTO,
+    updateAppointmentBookingStatusDTO: UpdateAppointmentBookingStatusDTO,
   ): void {
     this.appointmentManagementRepository.updateAppointmentBookingStatus(
       updateAppointmentBookingStatusDTO,

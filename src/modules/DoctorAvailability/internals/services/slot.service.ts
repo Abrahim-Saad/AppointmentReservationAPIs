@@ -2,7 +2,7 @@ import { dependencyManager } from '../../../../shared/dependencies/dependencyMan
 import IEvent from '../../../../shared/domain/interfaces/IEvent.interface';
 import { AppointmentBookingEvents } from '../../../../shared/enums/appointmentBookingEvents.enum';
 import { InMemoryEventBus } from '../../../../shared/infrastructure/inMemoryEventBus';
-import ICreateSlotDTO from '../controllers/dtos/ICreateSlot.dto';
+import CreateSlotDTO from '../controllers/dtos/createSlot.dto';
 import Slot from '../models/slot.model';
 import ISlotRepo from '../repositories/ISlot.repository';
 
@@ -27,7 +27,7 @@ export default class SlotService {
     return this.slotRepo.getSlotByID(slotID);
   }
 
-  public addSlot(createSlotDTO: ICreateSlotDTO): void {
+  public addSlot(createSlotDTO: CreateSlotDTO): void {
     this.slotRepo.create(createSlotDTO);
   }
 

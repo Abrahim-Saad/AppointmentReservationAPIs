@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 import SlotService from '../services/slot.service';
 import { dependencyManager } from '../../../../shared/dependencies/dependencyManager';
-import ICreateSlotDTO from './dtos/ICreateSlot.dto';
+import CreateSlotDTO from './dtos/createSlot.dto';
 
 
 const slotService: SlotService = dependencyManager.injectDependency('slotService');
@@ -11,7 +11,7 @@ export default class SlotController {
   public static addSlot(req: Request, res: Response) {
     try {
       const { time, cost } = req.body;
-      const createSlotDTO: ICreateSlotDTO = { time, cost };
+      const createSlotDTO: CreateSlotDTO = { time, cost };
       slotService.addSlot(createSlotDTO);
       res.status(201).json({ message: 'Slot created successfully' });
     } catch (error) {

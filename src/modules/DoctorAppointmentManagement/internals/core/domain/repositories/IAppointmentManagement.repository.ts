@@ -1,9 +1,9 @@
 import AppointmentBookingDTO from '../../../../../../shared/dto/appointmentBooking.dto';
-import IUpdateAppointmentBookingStatusDTO from '../../../../../AppointmentBooking/internals/presentation/dtos/IUpdateAppointmentBookingStatus.dto';
+import UpdateAppointmentBookingStatusDTO from '../../../../../AppointmentBooking/internals/presentation/dtos/updateAppointmentBookingStatus.dto';
 
 export default interface IAppointmentManagementRepository {
   listUpcomingAppointmentBookings(): AppointmentBookingDTO[];
   updateAppointmentBookingStatus(
-    updateAppointmentBookingStatusDTO: IUpdateAppointmentBookingStatusDTO,
+    updateAppointmentBookingStatusDTO: UpdateAppointmentBookingStatusDTO,
   ): void;
 }

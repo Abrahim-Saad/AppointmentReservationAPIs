@@ -1,7 +1,7 @@
-import IUpdateAppointmentBookingStatusDTO from '../../../presentation/dtos/IUpdateAppointmentBookingStatus.dto';
+import UpdateAppointmentBookingStatusDTO from '../../../presentation/dtos/updateAppointmentBookingStatus.dto';
 
 export default interface IUpdateAppointmentBookingStatusUseCase {
   execute(
-    updateAppointmentBookingStatusDTO: IUpdateAppointmentBookingStatusDTO,
+    updateAppointmentBookingStatusDTO: UpdateAppointmentBookingStatusDTO,
   ): Promise<void>;
 }

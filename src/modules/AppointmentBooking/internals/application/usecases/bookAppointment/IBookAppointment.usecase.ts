@@ -1,5 +1,5 @@
-import ICreateAppointmentBookingDTO from '../../../presentation/dtos/ICreateAppointmentBooking.dto';
+import CreateAppointmentBookingDTO from '../../../presentation/dtos/createAppointmentBooking.dto';
 
 export default interface IBookAppointmentUseCase {
-  execute(createAppointmentBookingDTO: ICreateAppointmentBookingDTO): Promise<void>;
+  execute(createAppointmentBookingDTO: CreateAppointmentBookingDTO): Promise<void>;
 }

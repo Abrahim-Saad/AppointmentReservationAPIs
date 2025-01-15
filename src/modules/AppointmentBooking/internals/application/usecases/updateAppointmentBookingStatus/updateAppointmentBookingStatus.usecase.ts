@@ -5,7 +5,7 @@ import AppointmentBookingDTO from '../../../../../../shared/dto/appointmentBooki
 import { InMemoryEventBus } from '../../../../../../shared/infrastructure/inMemoryEventBus';
 import { AppointmentStatus } from '../../../domain/enums/appointmentStatus.enum';
 import IAppointmentBookingRepository from '../../../domain/interfaces/IAppointmentBooking.repository';
-import IUpdateAppointmentBookingStatusDTO from '../../../presentation/dtos/IUpdateAppointmentBookingStatus.dto';
+import UpdateAppointmentBookingStatusDTO from '../../../presentation/dtos/updateAppointmentBookingStatus.dto';
 import IUpdateAppointmentBookingStatusUseCase from './IUpdateAppointmentBookingStatus.usecase';
 
 export default class UpdateAppointmentBookingStatusUseCase
@@ -44,7 +44,7 @@ export default class UpdateAppointmentBookingStatusUseCase
   async execute({
     ID,
     appointmentStatus,
-  }: IUpdateAppointmentBookingStatusDTO): Promise<void> {
+  }: UpdateAppointmentBookingStatusDTO): Promise<void> {
     const appointmentBooking =
       this.appointmentBookingRepo.getAppointmentBookingByID(ID);
     this.validate(appointmentBooking, appointmentStatus);
